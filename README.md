@@ -1,3 +1,4 @@
-=== Fancybox Mouse Control Helper ===
+Fancybox Mouse Control Helper
+=============================
 
 Хелпер для fancybox который позволяет приближать и отдалять изображения
