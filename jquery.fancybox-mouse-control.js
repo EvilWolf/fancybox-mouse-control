@@ -4,6 +4,10 @@
 		step_percentage = 15; // in percent
 	F.helpers.zoom_control = {
 		afterShow: function(defaults, options) {
+
+			if (options.type != 'image')
+				return;
+
 			var $fancy_wrap = $(options.wrap),
 			    aspect_ratio = $fancy_wrap.width() / $fancy_wrap.height();
 			
@@ -12,9 +16,10 @@
 				var current_top = parseFloat($fancy_wrap.css('top')),
 				    current_left = parseFloat($fancy_wrap.css('left'));
 				step_pixels = ($fancy_wrap.width() / 100) * step_percentage;
+
 				if (event.originalEvent.wheelDelta > 0) {
-					var new_height = ($fancy_wrap.width() + step_pixels) / aspect_ratio,
-						new_width = $fancy_wrap.width() + step_pixels,
+					var new_height = (($fancy_wrap.width() + step_pixels) / aspect_ratio) + $.fancybox.defaults.padding,
+						new_width = $fancy_wrap.width() + step_pixels + $.fancybox.defaults.padding,
 						new_css_style = {
 							width: new_width,
 							height: new_height,
@@ -23,8 +28,8 @@
 						}
 					$fancy_wrap.css(new_css_style);
 					new_css_style = {
-						width: new_width,
-						height: new_height
+						width: new_width - $.fancybox.opts.padding * 2,
+						height: new_height - $.fancybox.opts.padding * 2
 					}
 					$('.fancybox-inner', $fancy_wrap).css(new_css_style);
 				} else {
@@ -42,8 +47,8 @@
 
 					$fancy_wrap.css(new_css_style);
 					new_css_style = {
-						width: new_width,
-						height: new_height
+						width: new_width - $.fancybox.opts.padding * 2,
+						height: new_height - $.fancybox.opts.padding * 2
 					}
 					$('.fancybox-inner', $fancy_wrap).css(new_css_style);
 				}
@@ -74,6 +79,9 @@
 				});
 			});
 
+		},
+		onUpdate: function(defaults, fancybox) {
+			console.log('uPdata');
 		}
 	}
 
