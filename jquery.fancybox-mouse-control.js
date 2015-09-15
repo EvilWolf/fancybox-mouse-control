@@ -2,7 +2,7 @@
 	var F = $.fancybox,
 		Сache = {},
 		step_percentage = 15; // in percent
-	F.helpers.zoom_control = {
+	F.helpers.mouse_control = {
 		afterShow: function(defaults, options) {
 
 			if (options.type != 'image')
